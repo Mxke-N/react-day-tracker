@@ -1,26 +1,4 @@
-import React, { useState } from "react";
-
-const DUMMY_ACTIVITIES = [
-    {
-        id: 1,
-        name: "SLEEP",
-        totalTime: 0,
-    },
-    {
-        id: 2,
-        name: "WORK",
-        totalTime: 0,
-    },
-    {
-        id: 3,
-        name: "GYM",
-        totalTime: 0,
-    },
-];
-
-function ActivityList() {
-    const [activities, setActivities] = useState(DUMMY_ACTIVITIES);
-
+function ActivityList({ activities, addTimeToActivity }) {
     function formatActivityTime(activity) {
         const hours = Math.floor(activity.totalTime / (1000 * 60 * 60));
         const minutes = Math.floor((activity.totalTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -37,7 +15,9 @@ function ActivityList() {
                 <div key={activity.id} className="activity-item">
                     <h3>{activity.name}</h3>
                     <p>{formatActivityTime(activity)}</p>
-                    <button>+ Current Time</button>
+                    <button onClick={() => addTimeToActivity(activity.id)}>
+                        + Current Time
+                    </button>
                 </div>
             ))}
         </div>
