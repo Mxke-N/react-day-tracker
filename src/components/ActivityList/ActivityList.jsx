@@ -1,27 +1,30 @@
+import React, { useState } from 'react'
+
 import ActivityListHeader from "../ActivityListHeader/ActivityListHeader.jsx";
+import ActivityListItem from "../ActivityListItem/ActivityListItem.jsx";
 
-function ActivityList({ activities, addTimeToActivity, addNewActivity }) {
-    function formatActivityTime(activity) {
-        const hours = Math.floor(activity.totalTime / (1000 * 60 * 60));
-        const minutes = Math.floor((activity.totalTime % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((activity.totalTime % (1000 * 60)) / 1000);
-        
-        const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
+function ActivityList({ activities, addTimeToActivity, addNewActivity, updateActivityName }) {
+    const [isEditing, setIsEditing] = useState(false);
 
-        return formattedTime;
+    function handleIsEditing() {
+        setIsEditing(!isEditing);
     }
 
     return (
         <div className="activity-list">
-            <ActivityListHeader addNewActivity={addNewActivity} />
+            <ActivityListHeader 
+                addNewActivity={addNewActivity}
+                isEditing={isEditing}
+                handleIsEditing={handleIsEditing}
+            />
             {activities.map((activity, index) => (
-                <div key={index} className="activity-item">
-                    <h3>{activity.name}</h3>
-                    <p>{formatActivityTime(activity)}</p>
-                    <button onClick={() => addTimeToActivity(activity.name)}>
-                        + Current Time
-                    </button>
-                </div>
+                <ActivityListItem
+                    key={index}
+                    myActivity={activity} 
+                    addTimeToActivity={addTimeToActivity}
+                    isEditing={isEditing} 
+                    updateActivityName={updateActivityName}
+                />
             ))}
         </div>
     );

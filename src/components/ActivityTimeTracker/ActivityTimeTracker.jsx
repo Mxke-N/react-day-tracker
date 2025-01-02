@@ -102,9 +102,17 @@ function ActivityTimeTracker() {
 
     function addNewActivity(activityName) {
         setActivities(prevActivities => [
-            { name: activityName.toUpperCase(), totalTime: 0 },
+            { name: activityName, totalTime: 0 },
             ...prevActivities,
         ]);
+    }
+
+    function updateActivityName(newName, oldName) {
+        setActivities((prevActivities) =>
+            prevActivities.map((activity) =>
+                activity.name === oldName ? { ...activity, name: newName } : activity
+            )
+        );
     }
 
     return (
@@ -119,6 +127,7 @@ function ActivityTimeTracker() {
                 activities={activities} 
                 addTimeToActivity={addTimeToActivity}
                 addNewActivity={addNewActivity} 
+                updateActivityName={updateActivityName}
             />
         </div>
     )
