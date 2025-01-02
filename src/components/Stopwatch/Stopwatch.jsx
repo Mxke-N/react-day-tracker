@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function Stopwatch() {
-    // Initialize state from localStorage if available
     const [isRunning, setIsRunning] = useState(() => {
         const savedIsRunning = localStorage.getItem('stopwatchRunning');
         return savedIsRunning === 'true';
@@ -38,7 +37,7 @@ function Stopwatch() {
         if (isRunning) {
             intervalIdRef.current = setInterval(() => {
                 setElapsedTime(Date.now() - startTimeRef.current);
-            }, 10);
+            }, 1000);
         }
 
         return () => {
@@ -85,8 +84,9 @@ function Stopwatch() {
 
     return (
         <div className='stopwatch-container'>
+            <h4>Current Time</h4>
             <div className='display'>
-                {formatTime()}
+                <h3>{formatTime()}</h3>
             </div>
             <div className='controls'>
                 <button className='start-button' onClick={start}>Start</button>
