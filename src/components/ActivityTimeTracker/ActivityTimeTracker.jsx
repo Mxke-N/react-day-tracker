@@ -26,9 +26,9 @@ function ActivityTimeTracker() {
     const [activities, setActivities] = useState(() => {
         const savedActivities = localStorage.getItem('activities');
         return savedActivities ? JSON.parse(savedActivities) : [
-            { id: 1, name: "SLEEP", totalTime: 0 },
-            { id: 2, name: "WORK", totalTime: 0 },
-            { id: 3, name: "GYM", totalTime: 0 },
+            { name: "SLEEP", totalTime: 0 },
+            { name: "WORK", totalTime: 0 },
+            { name: "GYM", totalTime: 0 },
         ];
     });
 
@@ -83,12 +83,12 @@ function ActivityTimeTracker() {
         localStorage.removeItem('stopwatchStartTime');
     }  
 
-    function addTimeToActivity(activityId) {
+    function addTimeToActivity(activityName) {
         if (elapsedTime === 0) return;
 
         setActivities(prevActivities =>
             prevActivities.map(activity =>
-              activity.id === activityId
+              activity.name === activityName
                 ? { ...activity, totalTime: activity.totalTime + elapsedTime }
                 : activity
             )
@@ -98,6 +98,13 @@ function ActivityTimeTracker() {
         startTimeRef.current = Date.now();
         localStorage.setItem('stopwatchStartTime', Date.now());
         localStorage.removeItem('stopwatchPauseTime');
+    }
+
+    function addNewActivity(activityName) {
+        setActivities(prevActivities => [
+            { name: activityName.toUpperCase(), totalTime: 0 },
+            ...prevActivities,
+        ]);
     }
 
     return (
@@ -110,7 +117,8 @@ function ActivityTimeTracker() {
             />
             <ActivityList 
                 activities={activities} 
-                addTimeToActivity={addTimeToActivity} 
+                addTimeToActivity={addTimeToActivity}
+                addNewActivity={addNewActivity} 
             />
         </div>
     )
