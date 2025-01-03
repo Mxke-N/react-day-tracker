@@ -21,11 +21,6 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
     return 0;
   });
 
-  const [isAutoStart, setIsAutoStart] = useState(() => {
-    const savedAutoStart = localStorage.getItem('stopwatchAutoStart');
-    return savedAutoStart === 'true';
-  });
-
   const startTimeRef = useRef(null);
   const intervalIdRef = useRef(null);
 
@@ -57,10 +52,6 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   }, [elapsedTime]);
 
   useEffect(() => {
-    localStorage.setItem('stopwatchAutoStart', isAutoStart);
-  }, [isAutoStart]);
-
-  useEffect(() => {
     if (timeAddedEvent) {
       reset();
     }
@@ -88,17 +79,6 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
       localStorage.removeItem('stopwatchStartTime');
     }
     localStorage.removeItem('stopwatchPauseTime');
-
-    // This will pause the timer
-    // setElapsedTime(0);
-    // setIsRunning(false);
-    // localStorage.removeItem('stopwatchRunning');
-    // localStorage.removeItem('stopwatchStartTime');
-    // localStorage.removeItem('stopwatchPauseTime');
-  }
-
-  function toggleAutoStart() {
-    setIsAutoStart(!isAutoStart);
   }
 
   return (
@@ -111,9 +91,7 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
         onStart={start}
         onPause={pause}
         onReset={reset}
-        onToggleAutoStart={toggleAutoStart}
         isRunning={isRunning}
-        isAutoStart={isAutoStart}
       />
     </div>
 

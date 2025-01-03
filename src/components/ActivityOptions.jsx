@@ -1,4 +1,4 @@
-function ActivityOptions() {
+function ActivityOptions({ isAutoStart, toggleAutoStart }) {
   return (
     <div className="activity-options">
       <button>+</button>
