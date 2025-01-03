@@ -1,9 +1,9 @@
-import ActivityTimeTracker from "./components/ActivityTimeTracker/ActivityTimeTracker"
+import Home from "./pages/Home.jsx";
 
 function App() {
   return (
     <>
-      <ActivityTimeTracker />
+      <Home />
     </>
   )
 }

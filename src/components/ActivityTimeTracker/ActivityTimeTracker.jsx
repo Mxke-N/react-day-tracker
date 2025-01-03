@@ -81,6 +81,7 @@ function ActivityTimeTracker() {
         setIsRunning(false);
         localStorage.removeItem('stopwatchRunning');
         localStorage.removeItem('stopwatchStartTime');
+        localStorage.removeItem('stopwatchPauseTime');
     }  
 
     function addTimeToActivity(activityName) {
