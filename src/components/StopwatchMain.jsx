@@ -21,6 +21,11 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
     return 0;
   });
 
+  const [isAutoStart, setIsAutoStart] = useState(() => {
+    const savedAutoStart = localStorage.getItem('stopwatchAutoStart');
+    return savedAutoStart === 'true';
+  });
+
   const startTimeRef = useRef(null);
   const intervalIdRef = useRef(null);
 
@@ -36,8 +41,9 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
     if (isRunning) {
       startTimeRef.current = Date.now() - elapsedTime;
       localStorage.setItem('stopwatchStartTime', startTimeRef.current);
+      const getStartTimeRef = () => startTimeRef.current;
       intervalIdRef.current = setInterval(() => {
-        const updatedTime = Date.now() - startTimeRef.current;
+        const updatedTime = Date.now() - getStartTimeRef();
         setElapsedTime(updatedTime);
       }, 1000);
     }
@@ -51,13 +57,14 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   }, [elapsedTime]);
 
   useEffect(() => {
+    localStorage.setItem('stopwatchAutoStart', isAutoStart);
+  }, [isAutoStart]);
+
+  useEffect(() => {
     if (timeAddedEvent) {
-      setElapsedTime(0);
-      startTimeRef.current = Date.now();
-      localStorage.setItem('stopwatchStartTime', Date.now());
-      localStorage.removeItem('stopwatchPauseTime');
-      receivedTimeAddedEvent();
+      reset();
     }
+    receivedTimeAddedEvent();
   }, [timeAddedEvent]);
 
   function start() {
@@ -73,10 +80,25 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
 
   function reset() {
     setElapsedTime(0);
-    setIsRunning(false);
-    localStorage.removeItem('stopwatchRunning');
-    localStorage.removeItem('stopwatchStartTime');
+    if (isRunning) {
+      startTimeRef.current = Date.now();
+      localStorage.setItem('stopwatchStartTime', Date.now());
+    } else {
+      localStorage.removeItem('stopwatchRunning');
+      localStorage.removeItem('stopwatchStartTime');
+    }
     localStorage.removeItem('stopwatchPauseTime');
+
+    // This will pause the timer
+    // setElapsedTime(0);
+    // setIsRunning(false);
+    // localStorage.removeItem('stopwatchRunning');
+    // localStorage.removeItem('stopwatchStartTime');
+    // localStorage.removeItem('stopwatchPauseTime');
+  }
+
+  function toggleAutoStart() {
+    setIsAutoStart(!isAutoStart);
   }
 
   return (
@@ -89,6 +111,9 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
         onStart={start}
         onPause={pause}
         onReset={reset}
+        onToggleAutoStart={toggleAutoStart}
+        isRunning={isRunning}
+        isAutoStart={isAutoStart}
       />
     </div>
 

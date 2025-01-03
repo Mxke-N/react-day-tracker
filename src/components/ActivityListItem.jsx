@@ -1,3 +1,4 @@
+import AddCurrentTimeButton from "./AddCurrentTimeButton.jsx";
 
 function ActivityListItem({ activity, addTimeToActivity }) {
   function formatTime(totalTime) {
@@ -14,9 +15,10 @@ function ActivityListItem({ activity, addTimeToActivity }) {
     <div className="activity-list-item">
       <h3>{activity.name}</h3>
       <p>{formatTime(activity.totalTime)}</p>
-      <button onClick={() => addTimeToActivity(activity.id)}>
-        + Current Time
-      </button>
+      <AddCurrentTimeButton 
+        myID={activity.id} 
+        addTimeToActivity={addTimeToActivity} 
+      />
     </div>
   )
 }

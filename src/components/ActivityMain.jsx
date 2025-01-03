@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import ActivityHeader from "./ActivityHeader.jsx";
 import ActivityList from "./ActivityList.jsx";
 
@@ -12,10 +13,9 @@ function ActivityMain({ stopwatchTime, broadcastTimeAddedEvent }) {
     ];
   });
 
-  // Save activities to localStorage whenever they change
-  // useEffect(() => {
-  //   localStorage.setItem('activities', JSON.stringify(activities));
-  // }, [activities]);
+  useEffect(() => {
+    localStorage.setItem('activities', JSON.stringify(activities));
+  }, [activities]);
 
   function addTimeToActivity(activityId) {
     if (stopwatchTime === 0) return;
