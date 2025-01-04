@@ -44,7 +44,7 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
       totalTime: 0
     };
 
-    setActivities((prevActivities) => [...prevActivities, newActivity]);
+    setActivities((prevActivities) => [newActivity, ...prevActivities]);
   }
 
   return (

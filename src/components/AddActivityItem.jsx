@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
 function AddActivityItem() {
   const { addNewActivity } = useActivity();
   const [inputText, setinputText] = useState("");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   function handleOnChange(e) {
     setinputText(e.target.value);
@@ -22,6 +29,7 @@ function AddActivityItem() {
   return (
     <div className="add-activity">
       <input 
+        ref={inputRef}
         type="text" 
         value={inputText} 
         onChange={handleOnChange}
