@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
+import { ActivityProvider } from "../contexts/ActivityContext.jsx"
 import StopwatchMain from "../components/StopwatchMain.jsx";
 import ActivityMain from "../components/ActivityMain.jsx";
 
@@ -11,9 +12,10 @@ function Home() {
     setStopwatchTime(udpatedTime);
   }
 
-  function broadcastTimeAddedEvent() {
+  const broadcastTimeAddedEvent = useCallback(() => {
+    console.log("broadcastTimeAddedEvent called in Home");
     setTimeAddedEvent(true);
-  }
+  }, []);
 
   function receivedTimeAddedEvent() {
     setTimeAddedEvent(false);
@@ -26,10 +28,12 @@ function Home() {
         timeAddedEvent={timeAddedEvent}
         receivedTimeAddedEvent={receivedTimeAddedEvent}
       />
-      <ActivityMain 
+      <ActivityProvider 
         stopwatchTime={stopwatchTime}
         broadcastTimeAddedEvent={broadcastTimeAddedEvent}
-      />
+      >
+        <ActivityMain />
+      </ActivityProvider>
     </>
   );
 }

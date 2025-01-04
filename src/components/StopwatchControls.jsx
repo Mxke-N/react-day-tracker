@@ -1,5 +1,5 @@
 
-function StopwatchControls({ onStart, onPause, onReset, onToggleAutoStart, isRunning, isAutoStart }) {
+function StopwatchControls({ onStart, onPause, onReset, isRunning }) {
   return (
     <div className='stopwatch-controls'>
       <button className='start-button' onClick={onStart}>
