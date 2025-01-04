@@ -3,6 +3,8 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 const ActivityContext = createContext();
 
 export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEvent }){
+  const [option, setOption] = useState(null);
+
   const [activities, setActivities] = useState(() => {
     const savedActivities = localStorage.getItem("activities");
     return savedActivities
@@ -47,13 +49,32 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     setActivities((prevActivities) => [newActivity, ...prevActivities]);
   }
 
+  function updateActivityName(id, newName) {
+    console.log(id, newName);
+    setActivities((prevActivities) =>
+      prevActivities.map((activity) =>
+        activity.id === id ? (
+          {
+            ...activity,
+            name: newName
+          }
+        ) : (
+          activity
+        )
+      )
+    );
+  }
+
   return (
     <ActivityContext.Provider value={{ 
       stopwatchTime, 
       activities, 
       setActivities, 
       addTimeToActivity,
-      addNewActivity 
+      addNewActivity,
+      option,
+      setOption,
+      updateActivityName,
     }}>
       {children}
     </ActivityContext.Provider>

@@ -1,13 +1,14 @@
-import AddActivityItem from "./AddActivityItem.jsx";
+import AddActivityMenu from "./AddActivityMenu.jsx";
 
 function ActivityOptionsSubheader({ option }) {
   return (
     <div className="activity-options-subheader">
       {option === "add" ? (
-        <AddActivityItem />
+        <AddActivityMenu />
       ) : (
         null
       )}
+
     </div>
   );
 }

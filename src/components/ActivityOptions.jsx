@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useActivity } from "../contexts/ActivityContext.jsx";
 
 import ActivityOptionsSubheader from "./ActivityOptionsSubheader.jsx";
 
 function ActivityOptions() {
-  const [option, setOption] = useState(null);
+  const { option, setOption } = useActivity();
 
   return (
     <div className="activity-options">
