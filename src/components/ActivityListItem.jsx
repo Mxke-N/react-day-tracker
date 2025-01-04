@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
 function ActivityListItem({ activity }) {
-  const { option, updateActivityName, addTimeToActivity } = useActivity();
+  const { option, updateActivityName, addTimeToActivity, deleteActivity } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
 
   useEffect(() => {
@@ -36,6 +36,10 @@ function ActivityListItem({ activity }) {
     addTimeToActivity(activity.id);
   }
 
+  function onDeleteActivityClick() {
+    deleteActivity(activity.id);
+  }
+
   return (
     <div className="activity-list-item">
     {option === "edit" ? (
@@ -50,7 +54,7 @@ function ActivityListItem({ activity }) {
         <p>{formatTime()}</p>
         <div className="edit-activity-buttons">
           <button>Reset Activity Time</button>
-          <button>Delete Activity</button>
+          <button onClick={onDeleteActivityClick}>Delete Activity</button>
         </div>
       </>
     ) : (
