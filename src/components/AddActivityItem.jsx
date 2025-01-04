@@ -3,10 +3,10 @@ import { useActivity } from "../contexts/ActivityContext.jsx";
 
 function AddActivityItem() {
   const { addNewActivity } = useActivity();
-  const [activityName, setActivityName] = useState("");
+  const [inputText, setinputText] = useState("");
 
   function handleOnChange(e) {
-    setActivityName(e.target.value);
+    setinputText(e.target.value);
   }
 
   function handleKeyUp(e) {
@@ -15,15 +15,15 @@ function AddActivityItem() {
   }
 
   function submit() {
-    if (activityName.trim() === "") return;
-    addNewActivity(activityName.trim());
-    setActivityName("");
+    if (inputText.trim() === "") return;
+    addNewActivity(inputText.trim());
+    setinputText("");
   }
   return (
     <div className="add-activity">
       <input 
         type="text" 
-        value={activityName} 
+        value={inputText} 
         onChange={handleOnChange}
         onKeyUp={handleKeyUp}
         placeholder="Enter activity name" />
