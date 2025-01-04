@@ -24,6 +24,18 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   const startTimeRef = useRef(null);
   const intervalIdRef = useRef(null);
 
+  const getStartTimeRef = () => startTimeRef.current;
+
+  function startTimer(myElapsedTime) {
+    startTimeRef.current = Date.now() - myElapsedTime;
+    localStorage.setItem('stopwatchStartTime', startTimeRef.current);
+    clearInterval(intervalIdRef.current);
+    intervalIdRef.current = setInterval(() => {
+      const updatedTime = Math.floor((Date.now() - getStartTimeRef()) / 1000) * 1000;
+      setElapsedTime(updatedTime);
+    }, 1000);
+  }
+
   useEffect(() => {
     const startTime = localStorage.getItem('stopwatchStartTime');
     if (startTime && isRunning) {
@@ -34,13 +46,7 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   useEffect(() => {
     localStorage.setItem('stopwatchRunning', isRunning);
     if (isRunning) {
-      startTimeRef.current = Date.now() - elapsedTime;
-      localStorage.setItem('stopwatchStartTime', startTimeRef.current);
-      const getStartTimeRef = () => startTimeRef.current;
-      intervalIdRef.current = setInterval(() => {
-        const updatedTime = Date.now() - getStartTimeRef();
-        setElapsedTime(updatedTime);
-      }, 1000);
+      startTimer(elapsedTime);
     }
     return () => {
       clearInterval(intervalIdRef.current);
@@ -54,8 +60,8 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   useEffect(() => {
     if (timeAddedEvent) {
       reset();
+      receivedTimeAddedEvent();
     }
-    receivedTimeAddedEvent();
   }, [timeAddedEvent]);
 
   function start() {
@@ -72,8 +78,7 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
   function reset() {
     setElapsedTime(0);
     if (isRunning) {
-      startTimeRef.current = Date.now();
-      localStorage.setItem('stopwatchStartTime', Date.now());
+      startTimer(0);
     } else {
       localStorage.removeItem('stopwatchRunning');
       localStorage.removeItem('stopwatchStartTime');

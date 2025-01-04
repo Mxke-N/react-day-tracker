@@ -12,10 +12,9 @@ function Home() {
     setStopwatchTime(udpatedTime);
   }
 
-  const broadcastTimeAddedEvent = useCallback(() => {
-    console.log("broadcastTimeAddedEvent called in Home");
+  function broadcastTimeAddedEvent() {
     setTimeAddedEvent(true);
-  }, []);
+  }
 
   function receivedTimeAddedEvent() {
     setTimeAddedEvent(false);
