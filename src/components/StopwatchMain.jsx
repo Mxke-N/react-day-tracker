@@ -83,7 +83,7 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
 
   return (
     <div className="stopwatch-main">
-      <h4>Current Time</h4>
+      <h3>Current Time</h3>
       <StopwatchTime
         elapsedTime={elapsedTime}
       />

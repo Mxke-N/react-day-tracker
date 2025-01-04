@@ -14,7 +14,7 @@ function StopwatchTime({ elapsedTime }) {
 
   return (
     <div className='stopwatch-time'>
-      <h3>{formatTime()}</h3>
+      <h2>{formatTime()}</h2>
     </div>
   );
 }

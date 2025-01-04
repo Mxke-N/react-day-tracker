@@ -28,19 +28,19 @@ function AddActivityItem() {
   }
   return (
     <div className="add-activity">
-      <input 
+      <input
         ref={inputRef}
-        type="text" 
-        value={inputText} 
+        type="text"
+        value={inputText}
         onChange={handleOnChange}
         onKeyUp={handleKeyUp}
         placeholder="Enter activity name" />
-      <p>0h 0m 0s</p>
       <button
         onClick={submit}
       >
         Add New Activity
       </button>
+      <p>0h 0m 0s</p>
     </div>
   );
 }
