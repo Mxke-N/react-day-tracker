@@ -8,10 +8,14 @@ function ActivityListItem({ activity }) {
   useEffect(() => {
     if (option === "edit") {
       setActivityName(activity.name);
-    } else if (activityName !== activity.name) {
+    } 
+  }, [option]);
+
+  useEffect(() => {
+    if (activityName.trim() !== activity.name) {
       updateActivityName(activity.id, activityName);
     }
-  }, [option]);
+  }, [activityName]);
 
   function handleNameChange(e) {
     setActivityName(e.target.value);

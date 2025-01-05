@@ -10,7 +10,7 @@ function ActivityOptions() {
       <div className="activity-view-selection">
         <label htmlFor="views">view:</label>
         <select name="views" id="views">
-          <option value="alltime">all-time</option>
+          <option value="all-time">all-time</option>
           <option value="daily">daily</option>
         </select>
       </div> 
