@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
-function ActivityListItem({ index, activity, activitiesLength }) {
+function ActivityListItem({ activity }) {
   const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, reorderActivities } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
 
@@ -48,14 +48,6 @@ function ActivityListItem({ index, activity, activitiesLength }) {
     resetActivityTime(activity.id);
   }
 
-  function onUpClick() {
-    reorderActivities(index, index - 1);
-  }
-
-  function onDownClick() {
-    reorderActivities(index, index + 1);
-  }
-
   return (
     <div className="activity-list-item">
       {option === "edit" ? (
@@ -69,18 +61,6 @@ function ActivityListItem({ index, activity, activitiesLength }) {
           />
           <p>{formatTime()}</p>
           <div className="edit-activity-buttons">
-            <button
-              onClick={onUpClick}
-              disabled={index === 0}
-            >
-              ▲
-            </button>
-            <button
-              onClick={onDownClick}
-              disabled={index === activitiesLength - 1}
-            >
-              ▼
-            </button>
             <button onClick={onResetActivityTimeClick}>Reset Activity Time</button>
             <button onClick={onDeleteActivityClick}>Delete Activity</button>
           </div>

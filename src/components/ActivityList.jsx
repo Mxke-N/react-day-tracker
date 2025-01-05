@@ -4,14 +4,14 @@ import ActivityListItem from "./ActivityListItem.jsx";
 function ActivityList() {
   const { activities } = useActivity();
 
+  const sortedActivities = [...activities].sort((a, b) => b.totalTime - a.totalTime);
+
   return (
     <div className="activity-list">
-      {activities.map((activity, index) => (
+      {sortedActivities.map((activity) => (
         <ActivityListItem
           key={activity.id}
-          index={index}
           activity={activity}
-          activitiesLength={activities.length}
         />
       ))}
     </div>
