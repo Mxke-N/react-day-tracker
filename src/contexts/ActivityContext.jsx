@@ -50,7 +50,6 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
   }
 
   function updateActivityName(id, newName) {
-    console.log(id, newName);
     setActivities((prevActivities) =>
       prevActivities.map((activity) =>
         activity.id === id ? (
@@ -84,6 +83,14 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     );
   }
 
+  function reorderActivities(oldIndex, newIndex) {
+    if (newIndex < 0 || newIndex >= activities.length) return; // Prevent out-of-bounds
+    const updatedActivities = [...activities];
+    const [movedActivity] = updatedActivities.splice(oldIndex, 1); 
+    updatedActivities.splice(newIndex, 0, movedActivity); 
+    setActivities(updatedActivities);
+  }
+
   return (
     <ActivityContext.Provider value={{ 
       stopwatchTime, 
@@ -96,6 +103,7 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
       updateActivityName,
       deleteActivity,
       resetActivityTime,
+      reorderActivities,
     }}>
       {children}
     </ActivityContext.Provider>

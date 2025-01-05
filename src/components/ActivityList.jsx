@@ -6,10 +6,12 @@ function ActivityList() {
 
   return (
     <div className="activity-list">
-      {activities.map((activity) => (
+      {activities.map((activity, index) => (
         <ActivityListItem
           key={activity.id}
+          index={index}
           activity={activity}
+          activitiesLength={activities.length}
         />
       ))}
     </div>

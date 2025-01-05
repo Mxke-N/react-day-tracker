@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
-function ActivityListItem({ activity }) {
-  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime } = useActivity();
+function ActivityListItem({ index, activity, activitiesLength }) {
+  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, reorderActivities } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
 
   useEffect(() => {
     if (option === "edit") {
       setActivityName(activity.name);
-    } 
+    }
   }, [option]);
 
   useEffect(() => {
@@ -48,31 +48,51 @@ function ActivityListItem({ activity }) {
     resetActivityTime(activity.id);
   }
 
+  function onUpClick() {
+    reorderActivities(index, index - 1);
+  }
+
+  function onDownClick() {
+    reorderActivities(index, index + 1);
+  }
+
   return (
     <div className="activity-list-item">
-    {option === "edit" ? (
-      <>
-        <input
-          name={activity.id}
-          type="text"
-          value={activityName}
-          onChange={handleNameChange}
-          onKeyUp={handleOnKeyUp}
-        />
-        <p>{formatTime()}</p>
-        <div className="edit-activity-buttons">
-          <button onClick={onResetActivityTimeClick}>Reset Activity Time</button>
-          <button onClick={onDeleteActivityClick}>Delete Activity</button>
-        </div>
-      </>
-    ) : (
-      <>
-        <h3>{activity.name}</h3>
-        <p>{formatTime()}</p>
-        <button onClick={onAddCurrentTimeClick}>+ Current Time</button>
-      </>
-    )}
-  </div>
+      {option === "edit" ? (
+        <>
+          <input
+            name={activity.id}
+            type="text"
+            value={activityName}
+            onChange={handleNameChange}
+            onKeyUp={handleOnKeyUp}
+          />
+          <p>{formatTime()}</p>
+          <div className="edit-activity-buttons">
+            <button
+              onClick={onUpClick}
+              disabled={index === 0}
+            >
+              ▲
+            </button>
+            <button
+              onClick={onDownClick}
+              disabled={index === activitiesLength - 1}
+            >
+              ▼
+            </button>
+            <button onClick={onResetActivityTimeClick}>Reset Activity Time</button>
+            <button onClick={onDeleteActivityClick}>Delete Activity</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <h3>{activity.name}</h3>
+          <p>{formatTime()}</p>
+          <button onClick={onAddCurrentTimeClick}>+ Current Time</button>
+        </>
+      )}
+    </div>
   )
 }
 
