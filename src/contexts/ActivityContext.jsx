@@ -10,9 +10,11 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     return savedActivities
       ? JSON.parse(savedActivities)
       : [
-        { id: 1, name: "SLEEP", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
-        { id: 2, name: "WORK", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 1, name: "SLEEP", totalTime: 9000000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 2, name: "HOMEWORK", totalTime: 600000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
         { id: 3, name: "GYM", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 4, name: "PHONE", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 5, name: "NOTHING", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
       ];
   });
 

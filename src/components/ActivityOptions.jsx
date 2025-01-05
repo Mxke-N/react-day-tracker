@@ -32,9 +32,6 @@ function ActivityOptions() {
           <button onClick={() => setOption(null)}>cancel</button>
         )}
       </div>
-      <ActivityOptionsSubheader 
-        option={option}
-      />
     </div>
   );
 }
