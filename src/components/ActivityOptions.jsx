@@ -3,17 +3,25 @@ import { useActivity } from "../contexts/ActivityContext.jsx";
 import ActivityOptionsSubheader from "./ActivityOptionsSubheader.jsx";
 
 function ActivityOptions() {
-  const { option, setOption } = useActivity();
+  const { option, setOption, view, setView } = useActivity();
 
   return (
     <div className="activity-options-container">
-      {/* <div className="activity-view-selection">
+      <div className="activity-view-selection">
         <label htmlFor="views">view:</label>
-        <select name="views" id="views">
-          <option value="alltime">all-time</option>
-          <option value="daily">daily</option>
+        <select 
+          name="views" 
+          id="views"
+          value={view}
+          onChange={(event) => setView(event.target.value)}
+        >
+          <option value="total">Total</option>
+          <option value="year">Year</option>
+          <option value="month">Month</option>
+          <option value="week">Week</option>
+          <option value="day">Today</option>
         </select>
-      </div>  */}
+      </div> 
       <div className="activity-options-buttons">
         {option === null ? (
           <>

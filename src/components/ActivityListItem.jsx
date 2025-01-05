@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
 function ActivityListItem({ activity }) {
-  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, reorderActivities } = useActivity();
+  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, view } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
 
   useEffect(() => {
@@ -27,9 +27,10 @@ function ActivityListItem({ activity }) {
   }
 
   function formatTime() {
-    const hours = Math.floor(activity.totalTime / (1000 * 60 * 60));
-    const minutes = Math.floor((activity.totalTime % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((activity.totalTime % (1000 * 60)) / 1000);
+    const viewTime = activity[`${view}Time`];
+    const hours = Math.floor(viewTime / (1000 * 60 * 60));
+    const minutes = Math.floor((viewTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((viewTime % (1000 * 60)) / 1000);
 
     const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
 
