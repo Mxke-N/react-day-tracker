@@ -69,6 +69,21 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     setActivities((prevActivities) => prevActivities.filter((activity) => activity.id !== id));
   }
 
+  function resetActivityTime(id) {
+    setActivities((prevActivities) =>
+      prevActivities.map((activity) =>
+        activity.id === id ? (
+          {
+            ...activity,
+            totalTime: 0
+          }
+        ) : (
+          activity
+        )
+      )
+    );
+  }
+
   return (
     <ActivityContext.Provider value={{ 
       stopwatchTime, 
@@ -80,6 +95,7 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
       setOption,
       updateActivityName,
       deleteActivity,
+      resetActivityTime,
     }}>
       {children}
     </ActivityContext.Provider>
