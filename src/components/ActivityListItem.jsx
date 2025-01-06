@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
 function ActivityListItem({ activity }) {
-  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, view } = useActivity();
+  const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, updateActivityColor, view } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
+  const [activityColor, setActivityColor] = useState(activity.color);
 
   useEffect(() => {
     if (option === "edit") {
@@ -17,8 +18,18 @@ function ActivityListItem({ activity }) {
     }
   }, [activityName]);
 
+  useEffect(() => {
+    if (activityColor !== activity.color) {
+      updateActivityColor(activity.id, activityColor);
+    }
+  }, [activityColor]);
+
   function handleNameChange(e) {
     setActivityName(e.target.value);
+  }
+
+  function handleColorChange(e) {
+    setActivityColor(e.target.value);
   }
 
   function handleOnKeyUp(e) {
@@ -59,6 +70,14 @@ function ActivityListItem({ activity }) {
             value={activityName}
             onChange={handleNameChange}
             onKeyUp={handleOnKeyUp}
+          />
+          <label for="activity-color">Set Color</label>
+          <input 
+            type="color" 
+            id="activity-color" 
+            name="activity-color" 
+            value={activityColor} 
+            onChange={handleColorChange}
           />
           <p>{formatTime()}</p>
           <div className="edit-activity-buttons">

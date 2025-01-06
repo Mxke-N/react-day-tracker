@@ -10,11 +10,10 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     return savedActivities
       ? JSON.parse(savedActivities)
       : [
-        { id: 1, name: "SLEEP", totalTime: 9000000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
-        { id: 2, name: "HOMEWORK", totalTime: 600000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
-        { id: 3, name: "GYM", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
-        { id: 4, name: "PHONE", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
-        { id: 5, name: "NOTHING", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 1, name: "SLEEP", color: "#ff0000" , totalTime: 9000000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 2, name: "HOMEWORK", color: "#3366ff", totalTime: 600000, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 3, name: "GYM", color: "#cc33ff", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
+        { id: 5, name: "NOTHING", color: "#b3b3cc", totalTime: 0, yearTime: 0, monthTime: 0, weekTime: 0, dayTime: 0 },
       ];
   });
 
@@ -142,6 +141,21 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     );
   }
 
+  function updateActivityColor(id, newColor) {
+    setActivities((prevActivities) =>
+      prevActivities.map((activity) =>
+        activity.id === id ? (
+          {
+            ...activity,
+            color: newColor
+          }
+        ) : (
+          activity
+        )
+      )
+    );
+  }
+
 
   return (
     <ActivityContext.Provider value={{
@@ -157,6 +171,7 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
       resetActivityTime,
       view,
       setView,
+      updateActivityColor,
     }}>
       {children}
     </ActivityContext.Provider>
