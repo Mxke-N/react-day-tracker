@@ -81,7 +81,9 @@ function ActivityListItem({ activity }) {
           />
           <p>{formatTime()}</p>
           <div className="edit-activity-buttons">
-            <button onClick={onResetActivityTimeClick}>Reset Activity Time</button>
+            <button onClick={onResetActivityTimeClick}>
+              {view === "total" ? "Reset" : "Remove"} Activity Time
+            </button>
             <button onClick={onDeleteActivityClick}>Delete Activity</button>
           </div>
         </>
