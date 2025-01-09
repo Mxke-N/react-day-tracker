@@ -3,4 +3,40 @@ html, body {
   padding: 0;
   font-family: sans-serif;
   height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stopwatch-main {
+  height: 15vh;
+  background-color: chartreuse;
+}
+
+.activity-header {
+  display: flex;
+  flex-direction: column;
+  height: 9vh;
+  background-color: cyan;
+}
+.activity-header h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.activity-options-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.activity-list {
+  flex: 1;
+  overflow-y: auto;
+  background-color: beige;
 }
