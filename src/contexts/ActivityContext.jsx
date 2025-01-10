@@ -68,7 +68,7 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
   function addTimeToActivity(activityId) {
     if (stopwatchTime === 0) return;
 
-    const timeFields = ["total", "year", "month", "week", "day"]; // Defines cascading order
+    const timeFields = ["total", "year", "month", "week", "day"];
     setActivities(prevActivities =>
       prevActivities.map((activity) => {
         if (activity.id !== activityId) return activity;
@@ -85,9 +85,12 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
   }
 
   function addNewActivity(newActivityName) {
+    const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
     const newActivity = {
       id: Date.now(),
       name: newActivityName,
+      color: getRandomColor(),
       totalTime: 0,
       yearTime: 0,
       monthTime: 0,

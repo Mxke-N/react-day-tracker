@@ -1,42 +1,140 @@
-html, body {
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  height: 100%;
-  overflow: hidden;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
   height: 100%;
-}
-
-.stopwatch-main {
-  height: 15vh;
-  background-color: chartreuse;
-}
-
-.activity-header {
   display: flex;
-  flex-direction: column;
-  height: 9vh;
-  background-color: cyan;
-}
-.activity-header h2 {
-  text-align: center;
-  margin: 0;
-  font-size: 1.5rem;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 20px;
+  padding-bottom: 20px;
+ }
+
+.iphone-frame {
+  background-color: red;
+  border: 8px solid black;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+  border-radius: 38px;
+  width: 293px;
+  height: 633px;
+  overflow: hidden;
 }
 
-.activity-options-container {
+.iphone-top {
+  background-color: white;
+  height: 24px;
+  flex-shrink: 0;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.iphone-time {
+  flex: 1;
+  text-align: center;
+}
+
+.iphone-notch {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.iphone-notch::before {
+  content: "";
+  display: block;
+  width: 110px;
+  height: 30px;
+  background-color: black;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -74%);
+}
+
+.iphone-status {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.iphone-battery {
+  transform: translateX(-2px);
+}
+
+.iphone-bottom {
+  background-color: white;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.iphone-content {
+  background-color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stopwatch-main {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  flex-shrink: 0;
+}
+
+.activity-main {
+  background: linear-gradient(135deg, #4a8df9, #82d7ff);
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-header {
+  background-color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
 }
 
 .activity-list {
-  flex: 1;
+  background-color: rgba(255, 255, 255, 0.9);
+  flex-grow: 1;
   overflow-y: auto;
-  background-color: beige;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d2d2d2 #f1f1f1;
+}
+.activity-list-item {
+  border-top: 1px solid #eee;
+}
+
+
+@media (max-width: 450px) {
+  #root {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .iphone-frame {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+
+  .iphone-top {
+    height: 0;
+    flex-shrink: 0;
+    display: none;
+  }
+
+  .iphone-bottom {
+    height: 0;
+    flex-shrink: 0;
+    display: none;
+  }
 }

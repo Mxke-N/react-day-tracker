@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 import { ActivityProvider } from "../contexts/ActivityContext.jsx"
 import StopwatchMain from "../components/StopwatchMain.jsx";

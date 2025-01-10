@@ -3,10 +3,10 @@ import ActivityList from "./ActivityList.jsx";
 
 function ActivityMain() {
   return (
-    <>
+    <div className="activity-main">
       <ActivityHeader />
       <ActivityList />
-    </>
+    </div>
   );
 }
 
