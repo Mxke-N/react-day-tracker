@@ -64,23 +64,24 @@ function ActivityListItem({ activity }) {
     <div className="activity-list-item">
       {option === "edit" ? (
         <>
-          <input
-            name={activity.id}
-            type="text"
-            value={activityName}
-            onChange={handleNameChange}
-            onKeyUp={handleOnKeyUp}
-          />
-          <label for="activity-color">Set Color</label>
-          <input 
-            type="color" 
-            id="activity-color" 
-            name="activity-color" 
-            value={activityColor} 
-            onChange={handleColorChange}
-          />
-          <p>{formatTime()}</p>
-          <div className="edit-activity-buttons">
+          <div className="acitivity-item-header">
+            <input
+              name={activity.id}
+              type="text"
+              value={activityName}
+              onChange={handleNameChange}
+              onKeyUp={handleOnKeyUp}
+            />
+            <input 
+              type="color" 
+              id="activity-color" 
+              name="activity-color" 
+              value={activityColor} 
+              onChange={handleColorChange}
+            />
+            <p>{formatTime()}</p>
+          </div>
+          <div className="activity-item-buttons">
             <button onClick={onResetActivityTimeClick}>
               {view === "total" ? "Reset" : "Remove"} Activity Time
             </button>
@@ -89,9 +90,13 @@ function ActivityListItem({ activity }) {
         </>
       ) : (
         <>
-          <h3>{activity.name}</h3>
-          <p>{formatTime()}</p>
-          <button onClick={onAddCurrentTimeClick}>+ Current Time</button>
+          <div className="activity-item-header">
+            <h3>{activity.name}</h3>
+            <p>{formatTime()}</p>
+          </div>
+          <div className="activity-item-buttons">
+            <button onClick={onAddCurrentTimeClick}>+ Current Time</button>
+          </div>
         </>
       )}
     </div>

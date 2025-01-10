@@ -12,7 +12,7 @@
   align-items: baseline;
   padding-top: 20px;
   padding-bottom: 20px;
- }
+}
 
 .iphone-frame {
   background-color: red;
@@ -83,10 +83,12 @@
   color: rgb(56, 56, 56);
   text-decoration: none;
 }
+
 .iphone-bottom a:hover {
   color: rgb(88, 88, 88);
   text-decoration: underline;
 }
+
 .iphone-bottom span {
   font-size: 10px;
 }
@@ -112,7 +114,16 @@
 .stopwatch-main {
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.stopwatch-controls {
+  margin-right: 10px;
+}
+
 
 .activity-main {
   background: linear-gradient(135deg, #4a8df9, #82d7ff);
@@ -125,6 +136,27 @@
 .activity-header {
   background-color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.activity-header h2 {
+  transform: translateY(6px);
+  margin-bottom: 5px;
+}
+
+.activity-options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-activity {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .activity-list {
@@ -135,9 +167,23 @@
   scrollbar-width: thin;
   scrollbar-color: #d2d2d2 #f1f1f1;
 }
+
 .activity-list-item {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #dbdbdb;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+.activity-list-item:last-child {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.activity-item-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 @media (max-width: 450px) {
