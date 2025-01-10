@@ -15,7 +15,13 @@ function App() {
           </div>
         </div>
         <Home />
-        <div className="iphone-bottom"></div>
+        <div className="iphone-bottom">
+          <div className="iphone-bottom-link">
+            <span>🔒</span>
+            <a href="https://github.com/Mxke-N/react-day-tracker" target="_blank">mxke-n.github.io</a>
+          </div>
+          <div className="iphone-bottom-home"></div>
+        </div>
       </div>
     </div>
   )

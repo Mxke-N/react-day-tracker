@@ -17,6 +17,7 @@
 .iphone-frame {
   background-color: red;
   border: 8px solid black;
+  outline: 5px solid rgb(236, 236, 236);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
   border-radius: 38px;
   width: 293px;
@@ -26,7 +27,7 @@
 
 .iphone-top {
   background-color: white;
-  height: 24px;
+  height: 36px;
   flex-shrink: 0;
 
   display: flex;
@@ -41,20 +42,13 @@
 }
 
 .iphone-notch {
-  flex: 1;
-  text-align: center;
+  flex: 1.2;
   position: relative;
-}
-.iphone-notch::before {
-  content: "";
   display: block;
-  width: 110px;
-  height: 30px;
+  height: 40px;
   background-color: black;
-  border-radius: 10px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -74%);
+  border-radius: 15px;
+  margin-top: -22px;
 }
 
 .iphone-status {
@@ -70,8 +64,41 @@
 
 .iphone-bottom {
   background-color: white;
-  height: 24px;
+  height: 36px;
   flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.iphone-bottom-link {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iphone-bottom a {
+  font-size: 10px;
+  color: rgb(56, 56, 56);
+  text-decoration: none;
+}
+.iphone-bottom a:hover {
+  color: rgb(88, 88, 88);
+  text-decoration: underline;
+}
+.iphone-bottom span {
+  font-size: 10px;
+}
+
+.iphone-bottom-home {
+  flex: none;
+  background-color: black;
+  height: 4px;
+  margin: 0 auto;
+  margin-bottom: 4px;
+  width: 38%;
+  border-radius: 20px;
 }
 
 .iphone-content {
