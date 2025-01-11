@@ -41,7 +41,7 @@ function ActivityListItem({ activity, totalTime }) {
   useEffect(() => {
     if (!isDataLoaded) return;
     setActivityBarWidth(calculateBarWidth());
-  }, [view, isDataLoaded]);
+  }, [view, totalTime, activity, isDataLoaded]);
 
   function handleNameChange(e) {
     setActivityName(e.target.value);
