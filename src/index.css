@@ -130,7 +130,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .activity-header {
@@ -213,5 +213,9 @@
     height: 0;
     flex-shrink: 0;
     display: none;
+  }
+
+  .activity-list-item:last-child {
+    margin-bottom: 50px;
   }
 }
