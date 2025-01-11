@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
-function ActivityListItem({ activity, totalTime }) {
+function ActivityListItem({ activity, totalTime, maxTime }) {
   const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, updateActivityColor, view } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
   const [activityColor, setActivityColor] = useState(activity.color);
@@ -81,7 +81,7 @@ function ActivityListItem({ activity, totalTime }) {
 
   function calculateBarWidth() {
     const viewTime = activity[`${view}Time`];
-    const widthPercentage = (viewTime / totalTime) * 100;
+    const widthPercentage = (viewTime / maxTime) * 100;
     return Math.min(widthPercentage, 100); 
   }
 
