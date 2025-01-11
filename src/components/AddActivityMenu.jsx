@@ -40,7 +40,6 @@ function AddActivityItem() {
       >
         Add New Activity
       </button>
-      <p>0h 0m 0s</p>
     </div>
   );
 }

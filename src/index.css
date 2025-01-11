@@ -15,12 +15,12 @@
 }
 
 .iphone-frame {
-  background-color: red;
   border: 8px solid black;
   outline: 5px solid rgb(236, 236, 236);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
   border-radius: 38px;
-  width: 293px;
+  /* width: 293px; this is original iphone width */
+  width: 375px;
   height: 633px;
   overflow: hidden;
 }
@@ -104,7 +104,7 @@
 }
 
 .iphone-content {
-  background-color: white;
+  background-color: black;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -112,12 +112,16 @@
 }
 
 .stopwatch-main {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: rgb(60, 60, 60);
+  background: white;
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.stopwatch-main h2 {
+  color: black;
 }
 
 .stopwatch-controls {
@@ -134,13 +138,16 @@
 }
 
 .activity-header {
-  background: #cee0ff;
+  color: black;
+  background: white;
+  border-top: 2px solid #000000;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
+
 .activity-header h2 {
   transform: translateY(6px);
   margin-bottom: 5px;
@@ -154,12 +161,32 @@
   align-items: center;
 }
 
+.activity-view-selection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.view-total-time {
+  font-size: 12px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.activity-options-buttons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .add-activity {
-  background: rgb(246, 246, 246);
+  border-top: 1px solid #dbdbdb;
+  background: white;
 }
 
 .activity-list {
-  background-color: rgba(255, 255, 255);
+  background-color: white;
   flex-grow: 1;
 
   overflow-y: auto;
@@ -168,25 +195,44 @@
 }
 
 .activity-list-item {
+  background: linear-gradient(
+    to right,
+    var(--bar-color) var(--bar-width),
+    transparent var(--bar-width)
+  ), white;
   border-top: 1px solid #dbdbdb;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  color: black
+}
+.activity-list-item:first-child {
+  border-top: 2px solid #000000;
 }
 .activity-list-item:last-child {
   border-bottom: 1px solid #dbdbdb;
 }
-
 .activity-item-buttons {
   display: flex;
   flex-direction: column;
 }
 
+.activity-bar-background {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
 
 
 @media (max-width: 450px) {
-  html, body {
+
+  html,
+  body {
     overflow: hidden;
     height: 100%;
   }

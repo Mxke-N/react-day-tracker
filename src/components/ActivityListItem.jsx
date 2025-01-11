@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useActivity } from "../contexts/ActivityContext.jsx";
 
-function ActivityListItem({ activity }) {
+function ActivityListItem({ activity, totalTime }) {
   const { option, updateActivityName, addTimeToActivity, deleteActivity, resetActivityTime, updateActivityColor, view } = useActivity();
   const [activityName, setActivityName] = useState(activity.name);
   const [activityColor, setActivityColor] = useState(activity.color);
+  const [activityBarWidth, setActivityBarWidth] = useState(0);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchData = () => {
+      const storedActivities = JSON.parse(localStorage.getItem("activities"));
+      if (storedActivities) {
+        console.log("Activities loaded from local storage:", storedActivities);
+      }
+      setIsDataLoaded(true);
+    };
+  
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (option === "edit") {
@@ -23,6 +37,11 @@ function ActivityListItem({ activity }) {
       updateActivityColor(activity.id, activityColor);
     }
   }, [activityColor]);
+
+  useEffect(() => {
+    if (!isDataLoaded) return;
+    setActivityBarWidth(calculateBarWidth());
+  }, [view, isDataLoaded]);
 
   function handleNameChange(e) {
     setActivityName(e.target.value);
@@ -60,8 +79,20 @@ function ActivityListItem({ activity }) {
     resetActivityTime(activity.id);
   }
 
+  function calculateBarWidth() {
+    const viewTime = activity[`${view}Time`];
+    const widthPercentage = (viewTime / totalTime) * 100;
+    return Math.min(widthPercentage, 100); 
+  }
+
   return (
-    <div className="activity-list-item">
+    <div 
+      className="activity-list-item"
+      style={{
+        "--bar-width": `${activityBarWidth}%`,
+        "--bar-color": activityColor,
+      }}
+    >
       {option === "edit" ? (
         <>
           <div className="acitivity-item-header">
@@ -72,11 +103,11 @@ function ActivityListItem({ activity }) {
               onChange={handleNameChange}
               onKeyUp={handleOnKeyUp}
             />
-            <input 
-              type="color" 
-              id="activity-color" 
-              name="activity-color" 
-              value={activityColor} 
+            <input
+              type="color"
+              id="activity-color"
+              name="activity-color"
+              value={activityColor}
               onChange={handleColorChange}
             />
             <p>{formatTime()}</p>

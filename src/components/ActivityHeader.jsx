@@ -5,7 +5,7 @@ function ActivityHeader() {
   return (
     <>
       <div className="activity-header">
-        <h2>ACTIVITY TIMES</h2>
+        <h2>ACTIVITY TIME</h2>
         <ActivityOptions />
       </div>
       <ActivityOptionsSubheader />
