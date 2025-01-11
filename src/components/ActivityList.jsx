@@ -8,7 +8,7 @@ function ActivityList() {
 
   useEffect(() => {
     setTotalTime(activities.reduce((acc, activity) => acc + activity[`${view}Time`], 0));
-  }, [activities]);
+  }, [activities, view]);
 
   const sortedActivities = [...activities].sort((a, b) => b[`${view}Time`] - a[`${view}Time`]);
 
