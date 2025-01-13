@@ -1,2 +1,4 @@
 # React + Vite
-My personal Day Tracker
+My personal Time Tracker
+
+Press stop and propel yourself to the next activity
