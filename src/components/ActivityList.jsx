@@ -12,20 +12,34 @@ function ActivityList() {
     setMaxTime(activities.reduce((acc, activity) => Math.max(acc, activity[`${view}Time`]), 0));
   }, [activities, view]);
 
-  const sortedActivities = [...activities].sort((a, b) => b[`${view}Time`] - a[`${view}Time`]);
+  const alphabeticallySorted = [...activities].sort((a, b) => a.name.localeCompare(b.name));
+  const sortedActivities = alphabeticallySorted.sort((a, b) => {
+    const aTime = a[`${view}Time`];
+    const bTime = b[`${view}Time`];
+
+    if (aTime === 0 && bTime === 0) {
+      return 0; 
+    } else if (aTime !== 0 && bTime === 0) {
+      return -1;
+    } else if (aTime === 0 && bTime !== 0) {
+      return 1;
+    } else {
+      return bTime - aTime;
+    }
+  });
 
   return (
     <>
       <div className="activity-list">
-      {sortedActivities.map((activity) => (
-        <ActivityListItem
-          key={activity.id}
-          activity={activity}
-          totalTime={totalTime}
-          maxTime={maxTime}
-        />
-      ))}
-    </div>
+        {sortedActivities.map((activity) => (
+          <ActivityListItem
+            key={activity.id}
+            activity={activity}
+            totalTime={totalTime}
+            maxTime={maxTime}
+          />
+        ))}
+      </div>
     </>
   )
 }
