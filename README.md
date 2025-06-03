@@ -1,7 +1,7 @@
 <div id="toc" align="center">
   <ul style="list-style: none">
     <summary>
-      <h1 style="font-size: 2.2em;">🚀 REACT-DAY-TRACKER</h1>
+      <h1 style="font-size: 2.2em;"><a href="https://mxke-n.github.io/react-day-tracker/">🚀 REACT-DAY-TRACKER</a></h1>
     </summary>
   </ul>
 </div>
