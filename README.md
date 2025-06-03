@@ -30,18 +30,6 @@
 <br>
 
 --- 
-
-## 📚 Table of Contents
-
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Testing](#testing)
-
----
-
 ## 📝 Overview
 
 **react-day-tracker** is a robust time management tool designed to help users effectively monitor and manage their daily activities, enhancing productivity and mindfulness.
