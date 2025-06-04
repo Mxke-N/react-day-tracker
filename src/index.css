@@ -6,8 +6,7 @@
 }
 
 :root {
-  --bg-primary: #2c2e33;
-  --bg-secondary: #1a1b1e;
+  --bg-primary: #1a1b1e;
   --text-primary: #e0e0e0;
   --text-secondary: #a0a0a0;
   --border-color: #3f3f3f;
@@ -40,7 +39,7 @@ body {
 }
 
 .iphone-top {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   height: 36px;
   flex-shrink: 0;
   color: var(--text-primary);
@@ -77,7 +76,7 @@ body {
 }
 
 .iphone-bottom {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   height: 36px;
   flex-shrink: 0;
   display: flex;
@@ -126,7 +125,7 @@ body {
 
 .stopwatch-main {
   color: var(--text-primary);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
@@ -152,7 +151,7 @@ body {
 
 .activity-header {
   color: var(--text-primary);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border-top: 2px solid var(--border-color);
   border-bottom: 2px solid var(--border-color);
   flex-shrink: 0;
@@ -197,7 +196,7 @@ body {
 
 .add-activity {
   border-top: 1px solid var(--border-color);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 .activity-list {
@@ -205,14 +204,14 @@ body {
   flex-grow: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--border-color) var(--bg-secondary);
+  scrollbar-color: var(--border-color) var(--bg-primary);
 }
 
 .activity-list-item {
   background: linear-gradient(
     to right,
     var(--bar-color) var(--bar-width),
-    var(--bg-secondary) var(--bar-width)
+    var(--bg-primary) var(--bar-width)
   );
   border-top: 1px solid var(--border-color);
   display: flex;
