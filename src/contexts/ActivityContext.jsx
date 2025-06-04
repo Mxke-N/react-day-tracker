@@ -4,6 +4,8 @@ const ActivityContext = createContext();
 
 export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEvent }) {
   const [option, setOption] = useState(null);
+  const [previousState, setPreviousState] = useState(null);
+  const [canUndo, setCanUndo] = useState(false);
 
   const [activities, setActivities] = useState(() => {
     const savedActivities = localStorage.getItem("activities");
@@ -68,6 +70,12 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
   function addTimeToActivity(activityId) {
     if (stopwatchTime === 0) return;
 
+    setPreviousState({
+      activities: activities.map(a => ({...a})),
+      stopwatchTime
+    });
+    setCanUndo(true);
+
     const timeFields = ["total", "year", "month", "week", "day"];
     setActivities(prevActivities =>
       prevActivities.map((activity) => {
@@ -82,6 +90,21 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
     );
 
     broadcastTimeAddedEvent();
+  }
+
+  function undoLastAddTime() {
+    if (!previousState) return;
+    
+    setActivities(previousState.activities);
+    setPreviousState(null);
+    setCanUndo(false);
+    
+    const restoredTime = previousState.stopwatchTime;
+    
+    const event = new CustomEvent('restoreStopwatchTime', { 
+      detail: { time: restoredTime }
+    });
+    window.dispatchEvent(event);
   }
 
   function addNewActivity(newActivityName) {
@@ -175,6 +198,8 @@ export function ActivityProvider({ children, stopwatchTime, broadcastTimeAddedEv
       view,
       setView,
       updateActivityColor,
+      undoLastAddTime,
+      canUndo,
     }}>
       {children}
     </ActivityContext.Provider>

@@ -64,6 +64,21 @@ function StopwatchMain({ onElapsedTimeUpdate, timeAddedEvent, receivedTimeAddedE
     }
   }, [timeAddedEvent]);
 
+  useEffect(() => {
+    const handleRestoreTime = (event) => {
+      const { time } = event.detail;
+      setElapsedTime(time);
+      if (isRunning) {
+        startTimer(time);
+      }
+    };
+
+    window.addEventListener('restoreStopwatchTime', handleRestoreTime);
+    return () => {
+      window.removeEventListener('restoreStopwatchTime', handleRestoreTime);
+    };
+  }, [isRunning]);
+
   function start() {
     setIsRunning(true);
   }

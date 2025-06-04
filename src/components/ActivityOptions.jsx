@@ -2,7 +2,7 @@ import { useActivity } from "../contexts/ActivityContext.jsx";
 
 
 function ActivityOptions() {
-  const { activities, option, setOption, view, setView } = useActivity();
+  const { activities, option, setOption, view, setView, undoLastAddTime, canUndo } = useActivity();
 
   function getTotalViewTime() {
     const totalTime = activities.reduce((acc, activity) => acc + activity[`${view}Time`], 0);
@@ -37,6 +37,7 @@ function ActivityOptions() {
       <div className="activity-options-buttons">
         {option === null ? (
           <>
+            {canUndo && <button onClick={undoLastAddTime}>↩</button>}
             <button onClick={() => setOption("add")}>+</button>
             <button onClick={() => setOption("edit")}>edit</button>
           </>
