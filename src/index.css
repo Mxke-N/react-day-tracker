@@ -5,6 +5,20 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+:root {
+  --bg-primary: #2c2e33;
+  --bg-secondary: #1a1b1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --border-color: #3f3f3f;
+  --accent-color: #4a9eff;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
 #root {
   height: 100%;
   display: flex;
@@ -26,10 +40,10 @@
 }
 
 .iphone-top {
-  background-color: white;
+  background-color: var(--bg-secondary);
   height: 36px;
   flex-shrink: 0;
-
+  color: var(--text-primary);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -63,10 +77,9 @@
 }
 
 .iphone-bottom {
-  background-color: white;
+  background-color: var(--bg-secondary);
   height: 36px;
   flex-shrink: 0;
-
   display: flex;
   flex-direction: column;
 }
@@ -80,12 +93,12 @@
 
 .iphone-bottom a {
   font-size: 10px;
-  color: rgb(56, 56, 56);
+  color: var(--text-secondary);
   text-decoration: none;
 }
 
 .iphone-bottom a:hover {
-  color: rgb(88, 88, 88);
+  color: var(--text-primary);
   text-decoration: underline;
 }
 
@@ -104,7 +117,7 @@
 }
 
 .iphone-content {
-  background-color: black;
+  background-color: var(--bg-primary);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -112,8 +125,8 @@
 }
 
 .stopwatch-main {
-  color: rgb(60, 60, 60);
-  background: white;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
@@ -121,7 +134,7 @@
   align-items: center;
 }
 .stopwatch-main h2 {
-  color: black;
+  color: var(--text-primary);
 }
 
 .stopwatch-controls {
@@ -138,10 +151,10 @@
 }
 
 .activity-header {
-  color: black;
-  background: white;
-  border-top: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -150,6 +163,7 @@
 }
 
 .activity-header h2 {
+  color: var(--text-primary);
   transform: translateY(6px);
   margin-bottom: 5px;
 }
@@ -182,40 +196,38 @@
 }
 
 .add-activity {
-  border-top: 1px solid #dbdbdb;
-  background: white;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
 }
 
 .activity-list {
-  background-color: white;
+  background-color: var(--bg-primary);
   flex-grow: 1;
-
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #d2d2d2 #f1f1f1;
+  scrollbar-color: var(--border-color) var(--bg-secondary);
 }
 
 .activity-list-item {
   background: linear-gradient(
     to right,
     var(--bar-color) var(--bar-width),
-    transparent var(--bar-width)
-  ), white;
-  border-top: 1px solid #dbdbdb;
+    var(--bg-secondary) var(--bar-width)
+  );
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: relative;
   overflow: hidden;
-
-  color: black
+  color: var(--text-primary);
 }
 .activity-list-item:first-child {
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid var(--border-color);
 }
 .activity-list-item:last-child {
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid var(--border-color);
 }
 .activity-item-buttons {
   display: flex;
